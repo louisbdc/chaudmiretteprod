@@ -1,0 +1,24 @@
+---
+const quotes = [
+  { text: 'Une super expérience ! Roxane est une vraie pro, passionnée et à l’écoute. Un travail soigné, créatif et toujours réalisé avec bonne humeur.', name: 'Camille Plancke' },
+  { text: 'Véritable amoureuse de la caméra et de son métier. Elle sait retranscrire les émotions d’une manière unique, en variant les tempos de façon remarquable.', name: 'Coline Delierre' },
+  { text: 'Travail sérieux de A à Z ! Force de proposition, elle a su s’adapter à notre image. Un contenu de qualité — nous referons appel à elle sans hésiter.', name: 'Alex Paindavoine' },
+]
+---
+
+<section class="quotes dark" id="quotes">
+  <div
+    class="quotes__track"
+    id="qtrack"
+    style="padding-left:max(4vw,calc((100vw - 1320px)/2 + 4vw))"
+  >
+    {quotes.map((q) => (
+      <figure class="quote">
+        <p>« {q.text} »</p>
+        <figcaption class="quote__by">
+          <span class="stars">★★★★★</span><span class="nm">{q.name}</span>
+        </figcaption>
+      </figure>
+    ))}
+  </div>
+</section>

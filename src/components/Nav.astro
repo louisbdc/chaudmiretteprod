@@ -1,0 +1,19 @@
+---
+const links = [
+  { href: '#top', label: 'Accueil' },
+  { href: '#about', label: 'À propos' },
+  { href: '#skills', label: 'Compétences' },
+  { href: '#work', label: 'Réalisations' },
+  { href: '#blog', label: 'Blog' },
+  { href: '#contact', label: 'Contact' },
+]
+---
+
+<nav class="nav" id="nav">
+  <a class="nav__brand" href="#top">
+    <span class="nav__dot"></span><b>Chaud Mirette</b>
+  </a>
+  <div class="nav__links">
+    {links.map((l) => <a href={l.href}>{l.label}</a>)}
+  </div>
+</nav>

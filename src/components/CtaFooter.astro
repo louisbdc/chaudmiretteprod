@@ -1,0 +1,93 @@
+---
+const nav = [
+  { href: '#top', label: 'Accueil' },
+  { href: '#about', label: 'À propos' },
+  { href: '#skills', label: 'Compétences' },
+  { href: '#work', label: 'Réalisations' },
+]
+const socials = [
+  { href: 'https://www.instagram.com/chaudmirette_prod/', label: 'Instagram' },
+  { href: 'https://www.facebook.com/chaud.mirette/', label: 'Facebook' },
+  { href: 'https://www.youtube.com/@chaudmiretteproductions', label: 'YouTube' },
+  { href: 'https://www.linkedin.com/company/chaud-mirette-prod-audiovisuel/', label: 'LinkedIn' },
+]
+---
+
+<section class="cta dark" id="contact">
+  <div class="cta__eye"></div>
+  <div class="cta__inner wrap">
+    <h2 class="reveal">Un projet <em>vidéo</em> ?</h2>
+    <p class="reveal d2">
+      Motion design, captation, interviews, aftermovies… Donnons vie à vos idées avec des vidéos
+      qui marquent les esprits.
+    </p>
+    <a class="btn reveal d3" href="mailto:contact@chaudmiretteprod.fr" data-cursor="écrire">
+      Contactez-nous <span class="arr">→</span>
+    </a>
+  </div>
+
+  <footer class="footer" id="blog">
+    <div class="wrap">
+      <!-- colonnes -->
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <p>
+            Agence de production audiovisuelle à Lille. Vidéos corporate & événementielles à fort
+            impact, du brief à la diffusion.
+          </p>
+          <div class="footer__meta">
+            <a href="tel:0632010358" data-cursor="appeler">06 32 01 03 58</a>
+            <a href="mailto:contact@chaudmiretteprod.fr" data-cursor="écrire"
+              >contact@chaudmiretteprod.fr</a
+            >
+          </div>
+        </div>
+        <nav class="footer__col">
+          <h6>Navigation</h6>
+          <ul>
+            {nav.map((l) => <li><a href={l.href}><span class="lk">{l.label}</span></a></li>)}
+          </ul>
+        </nav>
+        <div class="footer__col">
+          <h6>Studio</h6>
+          <ul>
+            <li>
+              <a
+                href="https://maps.google.com/?q=71+Bd+de+la+Moselle+59000+Lille"
+                target="_blank"
+                rel="noopener"
+              ><span class="lk">71 Bd de la Moselle — 59000 Lille</span></a>
+            </li>
+            <li><a href="tel:0632010358"><span class="lk">06 32 01 03 58</span></a></li>
+            <li>
+              <a href="mailto:contact@chaudmiretteprod.fr"
+                ><span class="lk">contact@chaudmiretteprod.fr</span></a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h6>Suivez-nous</h6>
+          <ul>
+            {socials.map((l) => (
+              <li>
+                <a href={l.href} target="_blank" rel="noopener"><span class="lk">{l.label}</span></a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <!-- signature -->
+      <a class="footer__big" href="#top" data-cursor="haut" aria-label="Chaud Mirette — haut de page">
+        Chaud&nbsp;Mirette<span class="ember">.</span>
+      </a>
+
+      <div class="footer__bottom">
+        <span>© 2026 Chaud Mirette Productions</span>
+        <span class="footer__legal"><a href="#">Mentions légales</a> · <a href="#">Confidentialité</a></span>
+        <span>Fait avec <span class="ember">🤍</span> à Lille</span>
+      </div>
+    </div>
+  </footer>
+</section>

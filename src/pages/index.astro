@@ -1,0 +1,44 @@
+---
+import Layout from '../layouts/Layout.astro'
+import FilmChrome from '../components/FilmChrome.astro'
+import Nav from '../components/Nav.astro'
+import Hero from '../components/Hero.astro'
+import Marquee from '../components/Marquee.astro'
+import About from '../components/About.astro'
+import Work from '../components/Work.astro'
+import Skills from '../components/Skills.astro'
+import Quotes from '../components/Quotes.astro'
+import CtaFooter from '../components/CtaFooter.astro'
+
+import Loader from '../components/react/Loader.tsx'
+import Cursor from '../components/react/Cursor.tsx'
+import Hud from '../components/react/Hud.tsx'
+import Tweaks from '../components/react/Tweaks.tsx'
+import SiteEffects from '../components/react/SiteEffects.tsx'
+---
+
+<Layout>
+  <!-- Loader « ouverture de diaphragme » -->
+  <Loader client:load />
+
+  <!-- Habillage cinéma -->
+  <FilmChrome />
+  <Hud client:load />
+
+  <!-- Curseur sur-mesure -->
+  <Cursor client:load />
+
+  <!-- Page -->
+  <Nav />
+  <Hero />
+  <Marquee />
+  <About />
+  <Work />
+  <Skills />
+  <Quotes />
+  <CtaFooter />
+
+  <!-- Réglages + effets globaux -->
+  <Tweaks client:load />
+  <SiteEffects client:load />
+</Layout>

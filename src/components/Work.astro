@@ -1,0 +1,24 @@
+---
+import Realisations from './react/Realisations.tsx'
+---
+
+<section class="work dark" id="work">
+  <div class="wrap">
+    <div class="work__head">
+      <div>
+        <h2 class="reveal">Leurs films,<br /><span class="italic">en lumière</span></h2>
+      </div>
+      <a
+        class="btn btn--ghost reveal d2"
+        href="https://www.youtube.com/@chaudmiretteproductions"
+        target="_blank"
+        rel="noopener"
+        data-cursor="voir"
+      >
+        Voir la chaîne <span class="arr">→</span>
+      </a>
+    </div>
+  </div>
+
+  <Realisations client:load />
+</section>

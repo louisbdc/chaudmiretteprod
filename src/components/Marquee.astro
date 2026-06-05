@@ -1,0 +1,24 @@
+---
+// Bandeau clients en défilement continu. La boucle « seamless » est obtenue
+// en dupliquant la ligne directement dans le markup (pas de JS).
+const clients = [
+  "L'Oréal", 'LOSC', 'Ducati', 'Hyundai', 'Boulanger',
+  'LIDL', 'M6', 'Decathlon', 'Label Vie', 'Aquarelle', 'CPME',
+]
+---
+
+<div class="marquee" aria-label="Ils nous font confiance">
+  <div class="marquee__row">
+    {clients.map((c) => (
+      <>
+        <span>{c}</span><span class="sep">✦</span>
+      </>
+    ))}
+    {/* duplicata pour la boucle continue */}
+    {clients.map((c) => (
+      <>
+        <span aria-hidden="true">{c}</span><span class="sep" aria-hidden="true">✦</span>
+      </>
+    ))}
+  </div>
+</div>

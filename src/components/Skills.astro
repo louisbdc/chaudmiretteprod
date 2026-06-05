@@ -1,0 +1,35 @@
+---
+const skills = [
+  { n: '(01)', title: 'Conception<br>& rédaction', desc: 'On écrit votre histoire : note d’intention, scénario, storyboard. Le sens avant l’image.' },
+  { n: '(02)', title: 'Pré-production', desc: 'Repérages, casting, planning, logistique. Un tournage carré se prépare en amont.' },
+  { n: '(03)', title: 'Tournage', desc: 'Caméras 4K, micros directionnels, éclairages LED. Une image et un son irréprochables.' },
+  { n: '(04)', title: 'Montage', desc: 'Le rythme, l’émotion, la respiration. Là où les rushes deviennent un film.' },
+  { n: '(05)', title: 'Motion-design', desc: 'Habillage graphique, titrages animés, data-viz. Votre marque mise en mouvement.' },
+  { n: '(06)', title: 'Pilotage de drone', desc: 'Prises de vue aériennes télépilotées. Le point de vue qui change tout.' },
+]
+---
+
+<section class="skills light" id="skills">
+  <div class="wrap">
+    <div class="skills__top">
+      <div>
+        <h2 class="reveal">De l’idée<br />à l’image</h2>
+      </div>
+      <p class="skills__intro reveal d2">
+        Une chaîne complète, internalisée. Partagez-nous votre idée — on s’occupe de tout, de la
+        première ligne de scénario au dernier rendu.
+      </p>
+    </div>
+
+    <div class="skills__grid" id="skillsGrid">
+      {skills.map((s, i) => (
+        <div class={`skill reveal${i % 2 === 1 ? ' d2' : ''}`}>
+          <div class="skill__n">{s.n}</div>
+          <h3 class="skill__t" set:html={s.title} />
+          <p class="skill__d">{s.desc}</p>
+          <span class="skill__bar"></span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

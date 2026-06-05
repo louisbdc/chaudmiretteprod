@@ -1,0 +1,58 @@
+---
+const photo = '/assets/tournage.png'
+
+const approach = [
+  { n: '01', html: 'Une <strong>écoute active</strong> de vos objectifs de communication' },
+  { n: '02', html: 'Une <strong>créativité</strong> constante' },
+  { n: '03', html: 'Des <strong>contenus percutants</strong> qui engagent votre audience' },
+]
+---
+
+<section class="about light" id="about">
+  <div class="wrap">
+    <!-- Qui sommes-nous -->
+    <div class="about__intro">
+      <div class="about__lead reveal">
+        Une agence créative qui transforme vos idées en <em>émotions visuelles</em>.
+      </div>
+      <div class="about__body reveal d2">
+        <p>
+          <strong>Chaud Mirette Productions</strong> est une agence audiovisuelle créative et
+          professionnelle, spécialisée dans la
+          <strong>réalisation de vidéos sur-mesure pour les entreprises</strong>.
+        </p>
+        <p>
+          Savoir-faire technique pointu, passion vibrante pour l’image, et des moyens
+          professionnels — caméras 4K, drones, éclairages, motion design. Notre ambition : des
+          <strong>contenus à fort impact</strong>, au service de votre image de marque.
+        </p>
+      </div>
+    </div>
+
+    <!-- Production B2B & événementielle -->
+    <div class="about__feature">
+      <div class="about__photo reveal-clip">
+        <img class="about__img" src={photo} alt="En tournage — Chaud Mirette Productions" />
+        <span class="about__photo-tag"><span class="rec-dot"></span>Sur le terrain · Lille</span>
+      </div>
+      <div class="about__col">
+        <h3 class="about__h reveal">
+          Production <span class="italic ember">B2B</span><br />&amp; événementielle
+        </h3>
+        <p class="about__p reveal d1">
+          De la vidéo corporate au film institutionnel, en passant par le documentaire, le
+          reportage, le packshot produit et la vidéo événementielle — on couvre l’ensemble de vos
+          besoins audiovisuels.
+        </p>
+        <ul class="approach reveal d2">
+          {approach.map((a) => (
+            <li>
+              <span class="approach__n">{a.n}</span>
+              <span class="approach__t" set:html={a.html} />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,6 +1,6 @@
 /* =============================================================
-   CHAUD MIRETTE PRODUCTIONS — Design System
-   Concept : « La Mirette » — l'œil, l'objectif, le cadre.
+   CHAUD MIRETTE PRODUCTIONS - Design System
+   Concept : « La Mirette », l'œil, l'objectif, le cadre.
    Cinéma sombre  ×  éditorial clair.
    ============================================================= */
 
@@ -74,7 +74,7 @@ a{ color:inherit; text-decoration:none; }
 .ember{ color:var(--ember); }
 
 /* =============================================================
-   FILM CHROME — grain, vignette, cadre, timecode, REC
+   FILM CHROME - grain, vignette, cadre, timecode, REC
    ============================================================= */
 .chrome{ position:fixed; inset:0; z-index:60; pointer-events:none; }
 
@@ -116,7 +116,7 @@ body.hud-off .hud{ opacity:0; }
 .hud .label{ font-size:10.5px; letter-spacing:.28em; }
 
 /* =============================================================
-   CUSTOM CURSOR — réticule / diaphragme
+   CUSTOM CURSOR - réticule / diaphragme
    ============================================================= */
 .cursor{ position:fixed; z-index:90; top:0; left:0; pointer-events:none;
   mix-blend-mode:difference; transform:translate(-50%,-50%); }
@@ -140,7 +140,7 @@ body.view-cursor .cursor__ring{ width:96px; height:96px; border-color:var(--embe
 @media (pointer:coarse){ .cursor, .cursor__dot, .cursor__label{ display:none; } }
 
 /* =============================================================
-   LOADER — ouverture de diaphragme
+   LOADER - ouverture de diaphragme
    ============================================================= */
 .loader{ position:fixed; inset:0; z-index:200; background:var(--ink);
   display:grid; place-items:center; transition:opacity .6s ease; }

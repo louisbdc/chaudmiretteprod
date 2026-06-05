@@ -2,7 +2,7 @@
   "name": "chaudmiretteprod",
   "type": "module",
   "version": "1.0.0",
-  "description": "Chaud Mirette Productions — landing page (Astro + React)",
+  "description": "Chaud Mirette Productions, landing page (Astro + React)",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",

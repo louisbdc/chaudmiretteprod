@@ -1,19 +1,13 @@
 import { useEffect } from 'react'
 import { clamp } from '../../lib/dom'
 
-/**
- * Effets globaux pilotés au scroll, appliqués au DOM rendu par Astro :
- *  - nav qui se masque vers le bas / réapparaît vers le haut
- *  - révélations à l'apparition (IntersectionObserver)
- *  - parallaxe horizontale des témoignages
- *  - parallaxe du hero (titre / sous-titre / œil)
- * Îlot « headless » : ne rend aucun markup.
- */
+// Effets globaux au scroll sur le DOM rendu par Astro: nav, reveals,
+// parallaxe des témoignages et du hero. Ne rend aucun markup.
 export default function SiteEffects() {
   useEffect(() => {
     const cleanups: Array<() => void> = []
 
-    /* ---- NAV hide/show ---- */
+    // nav hide/show
     const nav = document.getElementById('nav')
     if (nav) {
       let last = 0
@@ -27,7 +21,7 @@ export default function SiteEffects() {
       cleanups.push(() => removeEventListener('scroll', onScroll))
     }
 
-    /* ---- HUD : s'efface au-dessus du footer ---- */
+    // HUD: s'efface au-dessus du footer
     const footer = document.querySelector('.footer')
     if (footer) {
       const fio = new IntersectionObserver(
@@ -43,7 +37,7 @@ export default function SiteEffects() {
       })
     }
 
-    /* ---- REVEAL ---- */
+    // reveal
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -60,7 +54,7 @@ export default function SiteEffects() {
     })
     cleanups.push(() => io.disconnect())
 
-    /* ---- QUOTES parallaxe horizontale ---- */
+    // parallaxe horizontale des témoignages
     const sec = document.querySelector<HTMLElement>('.quotes')
     const track = document.getElementById('qtrack')
     if (sec && track) {
@@ -79,7 +73,7 @@ export default function SiteEffects() {
       })
     }
 
-    /* ---- HERO parallaxe ---- */
+    // parallaxe du hero
     const wrap = document.querySelector<HTMLElement>('.eye-wrap')
     const title = document.querySelector<HTMLElement>('.hero__title')
     const sub = document.querySelector<HTMLElement>('.hero__sub')

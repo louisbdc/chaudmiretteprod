@@ -1,10 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { clamp, prefersReducedMotion } from '../../lib/dom'
 
-/**
- * Loader « ouverture de diaphragme » : anneau gradué qui se remplit.
- * Pilotage par transitions CSS + timers (robuste même quand rAF est throttlé).
- */
+// Loader: anneau de diaphragme qui se remplit (transitions CSS + timers).
 export default function Loader() {
   const apRef = useRef<HTMLDivElement>(null)
   const barRef = useRef<HTMLElement>(null)
@@ -76,7 +73,7 @@ export default function Loader() {
     <div className={`loader${done ? ' done' : ''}`} id="loader">
       <div className="aperture" id="ap" ref={apRef}></div>
       <div className="loader__meta">
-        <div className="label">Chaud Mirette — Ouverture</div>
+        <div className="label">Chaud Mirette · Ouverture</div>
         <div className="loader__bar">
           <i id="apbar" ref={barRef}></i>
         </div>
@@ -85,7 +82,7 @@ export default function Loader() {
   )
 }
 
-/** Déclenche les reveals du hero une fois le loader terminé. */
+// reveals du hero une fois le loader terminé
 function kickHeroReveals() {
   document
     .querySelectorAll('.hero .reveal, .hero .mask-line')

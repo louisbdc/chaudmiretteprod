@@ -1,4 +1,4 @@
-/* Helpers partagés pour les îlots d'interaction. */
+// helpers partagés pour les îlots d'interaction
 
 export const lerp = (a: number, b: number, t: number): number => a + (b - a) * t
 

@@ -1,4 +1,4 @@
-/* Réalisations mises en avant — vraies vidéos de la chaîne YouTube. */
+// Réalisations en avant: vidéos YouTube de la chaîne
 
 export interface Film {
   id: string
@@ -9,7 +9,7 @@ export interface Film {
 }
 
 export const FILMS: readonly Film[] = [
-  { id: 'KDqfBC96a_8', client: 'Chaud Mirette', title: 'Bande démo — Showreel', tag: 'Le best-of', featured: true },
+  { id: 'KDqfBC96a_8', client: 'Chaud Mirette', title: 'Bande démo · Showreel', tag: 'Le best-of', featured: true },
   { id: 'YWHdbqURlF8', client: 'LOSC', title: 'Garden Party', tag: 'Événementiel' },
   { id: 'aCazU06lKEU', client: 'Ducati', title: 'Lancement DIAVEL V4', tag: 'Film publicitaire' },
   { id: 'okapq1BVGiE', client: 'Hyundai', title: 'Les Foulées de Bondues', tag: 'Captation' },
@@ -20,7 +20,7 @@ export const FILMS: readonly Film[] = [
 export const SHOWREEL: Film = {
   id: 'KDqfBC96a_8',
   client: 'Chaud Mirette',
-  title: 'Bande démo — Showreel',
+  title: 'Bande démo · Showreel',
 }
 
 declare global {

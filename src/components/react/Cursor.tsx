@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { isCoarsePointer, lerp } from '../../lib/dom'
 
-/** Curseur réticule / diaphragme avec label contextuel (data-cursor). */
+// curseur custom avec label contextuel (data-cursor)
 export default function Cursor() {
   const ringRef = useRef<HTMLDivElement>(null)
   const dotRef = useRef<HTMLDivElement>(null)

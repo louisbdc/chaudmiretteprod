@@ -2,10 +2,8 @@ import { useEffect, useRef } from 'react'
 import { clamp, lerp } from '../../lib/dom'
 import { SHOWREEL } from '../../lib/films'
 
-/**
- * L'œil / la mirette : iris à fibres, pupille qui suit le curseur et se dilate
- * au scroll, reflet spéculaire. Clic → ouvre le showreel en lightbox.
- */
+// L'œil: iris à fibres, pupille qui suit le curseur et se dilate au scroll.
+// Clic ouvre le showreel en lightbox.
 export default function Eye() {
   const wrapRef = useRef<HTMLDivElement>(null)
   const eyeRef = useRef<HTMLDivElement>(null)
@@ -21,7 +19,7 @@ export default function Eye() {
     const wrap = wrapRef.current
     if (!eye || !pupil || !catchEl || !fibers || !wrap) return
 
-    // --- Fibres d'iris ---
+    // fibres d'iris
     const cx = 100
     const cy = 100
     let html = ''
@@ -39,7 +37,7 @@ export default function Eye() {
     }
     fibers.innerHTML = html
 
-    // --- Suivi + dilatation ---
+    // suivi + dilatation
     let tx = 0
     let ty = 0
     let cxT = 0

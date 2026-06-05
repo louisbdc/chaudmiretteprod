@@ -8,7 +8,7 @@ const LINKS = [
   { href: '#contact', label: 'Contact' },
 ]
 
-/** Navigation mobile : bouton hamburger + overlay plein écran (≤860px). */
+// Menu mobile: burger + overlay plein écran (<=860px)
 export default function MobileMenu() {
   const [open, setOpen] = useState(false)
 

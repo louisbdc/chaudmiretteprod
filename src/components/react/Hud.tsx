@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-/** HUD cinéma : point REC clignotant + timecode 25 i/s en temps réel. */
+// HUD: point REC + timecode 25 i/s
 export default function Hud() {
   const tcRef = useRef<HTMLSpanElement>(null)
 

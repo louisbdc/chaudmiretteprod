@@ -3,8 +3,7 @@ import { clamp, isCoarsePointer } from '../../lib/dom'
 import { FILMS, type Film } from '../../lib/films'
 
 const HOVER_INTENT_MS = 600
-// On démarre en autoplay muet (toujours autorisé), enablejsapi permet de
-// rétablir le son via postMessage dès que la lecture commence.
+// autoplay muet (toujours autorisé), enablejsapi pour rétablir le son via postMessage
 const FEAT_SRC = (id: string) =>
   `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&mute=1&controls=0&loop=1&playlist=${id}&playsinline=1&modestbranding=1&rel=0&disablekb=1&enablejsapi=1`
 const LB_SRC = (id: string) =>
@@ -12,12 +11,9 @@ const LB_SRC = (id: string) =>
 const thumb = (id: string) => `https://img.youtube.com/vi/${id}/maxresdefault.jpg`
 const thumbFallback = (id: string) => `https://img.youtube.com/vi/${id}/hqdefault.jpg`
 
-/**
- * Réalisations : galerie posée dans un iPad qui se redresse au scroll (3D).
- * Survol prolongé (600 ms) → la vidéo passe en plein écran dans la tablette.
- * Clic → lecture plein écran avec le son (lightbox). L'œil du hero ouvre aussi
- * la lightbox via window.__openFilm.
- */
+// Réalisations: galerie dans un iPad qui se redresse au scroll. Survol de 600 ms
+// pour lancer la vidéo dans la tablette, clic pour la lightbox (avec son).
+// window.__openFilm permet à l'œil du hero d'ouvrir la lightbox.
 export default function Realisations() {
   const ipadRef = useRef<HTMLDivElement>(null)
   const screenRef = useRef<HTMLDivElement>(null)
@@ -30,7 +26,7 @@ export default function Realisations() {
 
   const [lbFilm, setLbFilm] = useState<Film | null>(null)
 
-  /* ---- iframe « cover » dans l'écran de l'iPad ---- */
+  // iframe en mode cover dans l'écran de l'iPad
   const sizeCover = useCallback((ifr: HTMLIFrameElement) => {
     const screen = screenRef.current
     if (!screen) return
@@ -57,16 +53,16 @@ export default function Realisations() {
       if (curId.current === f.id) return
       curId.current = f.id
       featMedia.innerHTML = ''
-      // 1) la miniature remplit l'écran instantanément (sans attendre YouTube)
+      // la miniature remplit l'écran tout de suite, sans attendre YouTube
       featMedia.style.backgroundImage = `url('${thumb(f.id)}'), url('${thumbFallback(f.id)}')`
       featMedia.style.backgroundSize = 'cover'
       featMedia.style.backgroundPosition = 'center'
-      // 2) la vidéo se lance par-dessus une fois prête
+      // la vidéo se lance par-dessus une fois prête
       const ifr = document.createElement('iframe')
       ifr.allow = 'autoplay; encrypted-media'
       ifr.src = FEAT_SRC(f.id)
-      // rétablit le son dès que l'iframe est prête (best-effort selon la
-      // politique d'autoplay du navigateur — la vidéo se lance dans tous les cas)
+      // rétablit le son dès que l'iframe est prête (selon la politique
+      // d'autoplay du navigateur). La vidéo se lance dans tous les cas.
       ifr.addEventListener('load', () => {
         const cmd = (func: string, args: unknown[] = []) =>
           ifr.contentWindow?.postMessage(JSON.stringify({ event: 'command', func, args }), '*')
@@ -76,7 +72,7 @@ export default function Realisations() {
       })
       sizeCover(ifr)
       featMedia.appendChild(ifr)
-      featCap.innerHTML = '<span class="rec-dot"></span>' + f.client + ' — ' + f.title
+      featCap.innerHTML = '<span class="rec-dot"></span>' + f.client + ' · ' + f.title
     },
     [sizeCover],
   )
@@ -95,11 +91,11 @@ export default function Realisations() {
     }, 480)
   }, [])
 
-  /* ---- Lightbox ---- */
+  // lightbox
   const openFilm = useCallback((f: Film) => setLbFilm(f), [])
   const closeFilm = useCallback(() => setLbFilm(null), [])
 
-  /* expose pour l'œil du hero */
+  // exposé pour l'œil du hero
   useEffect(() => {
     window.__openFilm = openFilm
     return () => {
@@ -107,7 +103,7 @@ export default function Realisations() {
     }
   }, [openFilm])
 
-  /* fermeture lightbox au clavier */
+  // fermeture lightbox au clavier
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') closeFilm()
@@ -116,7 +112,7 @@ export default function Realisations() {
     return () => removeEventListener('keydown', onKey)
   }, [closeFilm])
 
-  /* resize : recale l'iframe feature */
+  // resize: recale l'iframe
   useEffect(() => {
     const onResize = () => {
       const ifr = featMediaRef.current?.querySelector('iframe')
@@ -126,13 +122,12 @@ export default function Realisations() {
     return () => removeEventListener('resize', onResize)
   }, [sizeCover])
 
-  /* iPad : redressement 3D au scroll (ContainerScroll vanilla) + remontée
-     par-dessus le titre « Leurs films, en lumière » */
+  // iPad: redressement 3D au scroll + remontée par-dessus le titre
   useEffect(() => {
     const ipad = ipadRef.current
     if (!ipad) return
-    // on mesure la progression sur le conteneur NON transformé (.work-stage)
-    // pour éviter toute boucle de feedback avec le translateY appliqué à l'iPad
+    // progression mesurée sur le conteneur non transformé (.work-stage)
+    // pour éviter une boucle de feedback avec le translateY de l'iPad
     const stage = ipad.parentElement
     let ticking = false
     const isMobile = () => innerWidth <= 768
@@ -140,15 +135,14 @@ export default function Realisations() {
       ticking = false
       const r = (stage ?? ipad).getBoundingClientRect()
       const vh = innerHeight
-      // progression basée sur le CENTRE : p atteint 1 quand l'iPad est centré,
-      // donc on voit l'animation se dérouler pendant qu'il monte, et elle se
-      // TERMINE sur un iPad parfaitement à plat (rotateX 0°) plein cadre
+      // progression basée sur le centre: p vaut 1 quand l'iPad est centré, donc
+      // l'animation se déroule pendant qu'il monte et finit à plat (rotateX 0)
       const center = r.top + r.height / 2
       const p = clamp((vh - center) / (vh * 0.5), 0, 1)
       const rot = (24 * (1 - p)).toFixed(2)
       const scale = (isMobile() ? 0.82 + 0.16 * p : 1.04 - 0.04 * p).toFixed(3)
-      // remontée en cloche : recouvre le titre pendant la phase inclinée, puis
-      // se résorbe pour que l'état final à plat soit centré et entièrement cadré
+      // remontée en cloche: recouvre le titre pendant la phase inclinée puis
+      // se résorbe pour que l'état final à plat soit centré et cadré
       const lift = ((isMobile() ? 30 : 70) * Math.sin(p * Math.PI)).toFixed(1)
       ipad.style.transform =
         'translateY(-' + lift + 'px) rotateX(' + rot + 'deg) scale(' + scale + ')'
@@ -172,8 +166,8 @@ export default function Realisations() {
 
   const onEnter = (f: Film) => {
     if (touch) return
-    // une vidéo joue déjà en plein écran → on verrouille : bouger la souris dans
-    // l'iPad ne doit pas déclencher le changement de vidéo
+    // une vidéo joue déjà: on verrouille pour que bouger la souris dans l'iPad
+    // ne change pas de vidéo
     if (curId.current) return
     if (hoverTimer.current) window.clearTimeout(hoverTimer.current)
     hoverTimer.current = window.setTimeout(() => showFeature(f), HOVER_INTENT_MS)
@@ -248,7 +242,7 @@ export default function Realisations() {
         </div>
       </div>
 
-      {/* ===== LIGHTBOX VIDÉO ===== */}
+      {/* lightbox vidéo */}
       <div
         className={`lightbox${lbFilm ? ' open' : ''}`}
         id="lightbox"
@@ -262,7 +256,7 @@ export default function Realisations() {
           <div className="lightbox__frame" id="lbFrame">
             {lbFilm && (
               <iframe
-                title={`${lbFilm.client} — ${lbFilm.title}`}
+                title={`${lbFilm.client} · ${lbFilm.title}`}
                 allow="autoplay; encrypted-media; fullscreen"
                 allowFullScreen
                 src={LB_SRC(lbFilm.id)}
@@ -273,7 +267,7 @@ export default function Realisations() {
             {lbFilm && (
               <>
                 <span>
-                  <span className="ember">{lbFilm.client}</span> &nbsp;—&nbsp; {lbFilm.title}
+                  <span className="ember">{lbFilm.client}</span> &nbsp;·&nbsp; {lbFilm.title}
                 </span>
                 <span>Chaud Mirette Productions</span>
               </>

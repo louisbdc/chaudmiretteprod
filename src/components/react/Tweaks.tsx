@@ -20,10 +20,7 @@ const readNum = (key: string, fallback: number): number => {
   return v != null ? +v : fallback
 }
 
-/**
- * Panneau « Réglages » : cale la teinte exacte du logo, l'intensité du grain,
- * le curseur sur-mesure et l'habillage cinéma. Ouverture/fermeture avec « t ».
- */
+// Panneau de réglages: accent du logo, grain, curseur, habillage. Touche t pour afficher.
 export default function Tweaks() {
   const panelRef = useRef<HTMLDivElement>(null)
   const [open, setOpen] = useState(false)

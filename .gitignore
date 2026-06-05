@@ -1,5 +1,7 @@
 # build output
 dist/
+# deploy
+.vercel/
 # generated types
 .astro/
 # dependencies

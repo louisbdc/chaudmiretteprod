@@ -199,10 +199,10 @@ body.view-cursor .cursor__ring{ width:96px; height:96px; border-color:var(--embe
 .mobilemenu.open .mobilemenu__links a{ opacity:1; transform:none; }
 .mobilemenu__links a:active{ color:var(--ember); }
 .mobilemenu__n{ font-family:var(--mono); font-size:12px; letter-spacing:.2em; color:var(--ember); }
-.mobilemenu__foot{ position:absolute; left:8vw; right:8vw; bottom:42px;
-  display:flex; flex-direction:column; gap:10px; font-family:var(--mono); font-size:12.5px;
+.mobilemenu__foot{ position:absolute; left:8vw; right:8vw; bottom:38px;
+  display:flex; flex-direction:column; gap:4px; font-family:var(--mono); font-size:13px;
   letter-spacing:.04em; color:var(--ink-soft); }
-.mobilemenu__foot a{ color:var(--ink-soft); }
+.mobilemenu__foot a{ color:var(--ink-soft); padding:9px 0; width:max-content; }
 body.menu-open{ overflow:hidden; }
 @media (min-width:861px){ .mobilemenu{ display:none; } }
 

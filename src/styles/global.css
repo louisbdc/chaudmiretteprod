@@ -136,6 +136,8 @@ body.hud-off .hud{ opacity:0; }
 body.hovering .cursor__ring{ width:74px; height:74px; }
 body.hovering .cursor__label{ opacity:1; }
 body.view-cursor .cursor__ring{ width:96px; height:96px; border-color:var(--ember); }
+/* jamais de curseur sur-mesure sur appareil tactile */
+@media (pointer:coarse){ .cursor, .cursor__dot, .cursor__label{ display:none; } }
 
 /* =============================================================
    LOADER — ouverture de diaphragme
@@ -172,6 +174,37 @@ body.view-cursor .cursor__ring{ width:96px; height:96px; border-color:var(--embe
 .nav__links a:hover{ opacity:1; }
 .nav__links a:hover::after{ width:100%; }
 @media (max-width:860px){ .nav__links{ display:none; } }
+
+/* ---------- Mobile menu (burger + overlay) ---------- */
+.navburger{ display:none; }
+@media (max-width:860px){
+  .navburger{ display:flex; position:fixed; top:18px; right:18px; z-index:130;
+    width:46px; height:46px; flex-direction:column; align-items:center; justify-content:center; gap:5px;
+    background:rgba(19,19,22,.5); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+    border:1px solid var(--line-d); border-radius:50%; padding:0; cursor:pointer; }
+  .navburger span{ display:block; width:18px; height:1.5px; background:var(--paper);
+    transition:transform .35s var(--ease), opacity .25s; }
+  .navburger.open span:nth-child(1){ transform:translateY(3.25px) rotate(45deg); }
+  .navburger.open span:nth-child(2){ transform:translateY(-3.25px) rotate(-45deg); }
+}
+.mobilemenu{ position:fixed; inset:0; z-index:125; background:var(--ink);
+  display:flex; flex-direction:column; justify-content:center; padding:0 8vw;
+  opacity:0; pointer-events:none; transform:translateY(-8px);
+  transition:opacity .4s var(--ease), transform .4s var(--ease); }
+.mobilemenu.open{ opacity:1; pointer-events:auto; transform:none; }
+.mobilemenu__links{ display:flex; flex-direction:column; }
+.mobilemenu__links a{ font-family:var(--serif); font-size:clamp(34px,11vw,58px); line-height:1.28;
+  color:var(--paper); display:flex; align-items:baseline; gap:16px; padding:8px 0;
+  opacity:0; transform:translateY(16px); transition:opacity .5s var(--ease), transform .5s var(--ease); }
+.mobilemenu.open .mobilemenu__links a{ opacity:1; transform:none; }
+.mobilemenu__links a:active{ color:var(--ember); }
+.mobilemenu__n{ font-family:var(--mono); font-size:12px; letter-spacing:.2em; color:var(--ember); }
+.mobilemenu__foot{ position:absolute; left:8vw; right:8vw; bottom:42px;
+  display:flex; flex-direction:column; gap:10px; font-family:var(--mono); font-size:12.5px;
+  letter-spacing:.04em; color:var(--ink-soft); }
+.mobilemenu__foot a{ color:var(--ink-soft); }
+body.menu-open{ overflow:hidden; }
+@media (min-width:861px){ .mobilemenu{ display:none; } }
 
 /* =============================================================
    SECTION SHELL

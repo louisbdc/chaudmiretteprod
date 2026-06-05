@@ -1,4 +1,6 @@
 ---
+import MobileMenu from './react/MobileMenu.tsx'
+
 const links = [
   { href: '#top', label: 'Accueil' },
   { href: '#about', label: 'À propos' },
@@ -17,3 +19,5 @@ const links = [
     {links.map((l) => <a href={l.href}>{l.label}</a>)}
   </div>
 </nav>
+
+<MobileMenu client:load />

@@ -267,6 +267,13 @@
   .footer__big{ white-space:normal; font-size:clamp(40px,15vw,90px); }
   .footer__bottom{ flex-direction:column; align-items:flex-start; gap:10px; }
 }
+/* cibles tactiles plus confortables sur mobile */
+@media (max-width:860px){
+  .footer__col li a{ padding:7px 0; }
+  .footer__col ul{ gap:6px; }
+  .footer__meta a{ padding:7px 0 4px; }
+  .footer__legal a{ padding:4px 0; display:inline-block; }
+}
 
 /* ============ TWEAKS PANEL ============ */
 #tw{ position:fixed; right:18px; bottom:18px; z-index:120; font-family:var(--mono);
